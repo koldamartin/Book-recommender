@@ -63,7 +63,7 @@ def recommend_books(df: pd.DataFrame, book_to_be_recommended: str) -> pd.DataFra
     # Create DataFrame with correlations
     correlations_df = pd.DataFrame({
         'Book-Title': correlations.index,
-        'Correlation': correlations.values,
+        'Correlation [%]': correlations.values,
     })
 
     # Merge correlations_df with average_ratings
@@ -71,7 +71,11 @@ def recommend_books(df: pd.DataFrame, book_to_be_recommended: str) -> pd.DataFra
     correlations_df = correlations_df.rename(columns={'Book-Rating': 'Average ratings'})
 
     # Sort by correlation value
-    correlations_df = correlations_df.sort_values('Correlation', ascending=False)
+    correlations_df = correlations_df.sort_values('Correlation [%]', ascending=False)
+
+    # convert correlation column to percentage and limit to two decimals
+    correlations_df['Correlation [%]'] = correlations_df['Correlation [%]'] * 100
+    correlations_df['Correlation [%]'] = correlations_df['Correlation [%]'].round(2)
 
     # Remove the book being recommended from the list
     correlations_df = correlations_df[correlations_df['Book-Title'] != book_to_be_recommended]
