@@ -1,7 +1,11 @@
 # Book recommender - A Data engineering homework
+
+### Schema
+(Red colour is not implemented in this project)
+
 ![Alt text](diagram.jpg?raw=true "Title")
 ## About
-- Data engineering app, that periodically loads data from Kaggle, process it and save it to S3 storage.
+- Data engineering app, that periodically loads csv datasets from Kaggle, process it and save it to S3 storage.
 - Application with frontend, that recommends books, based on correlation with other book ratings
   
 ## Tech Stack
@@ -11,6 +15,7 @@
 - Docker
 
 ## Cron Job for data loading
+- inside the `cron_job folder`
 - Create an `.env` file with Kaggle and AWS credentials
 - Open the Docker desktop program.
 - Create docker image with `docker build -t cron_job_image .`
@@ -19,6 +24,5 @@
 
 
 ## API for predictions
+- `recommender_system.py` and `app.py`
 - load the app from [Huggingface-Spaces](https://huggingface.co/spaces/Wintersmith/Book_recommender) and try it yourself
-- deployed as a docker image on Hugging Face spaces
-
