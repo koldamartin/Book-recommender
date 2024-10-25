@@ -81,20 +81,3 @@ def job():
     processed_data = process_data(min_reviews=50, file_name_1="Ratings", file_name_2="Books")
     upload_to_s3(processed_data)
     logging.info(f"Job completed at {time.strftime('%Y-%m-%d %H:%M:%S')}...")
-
-# # Schedule the job to run daily at a specific time (e.g., 2:00 AM)
-# schedule.every().day.at("02:00").do(job)
-
-# Schedule the job to run every 5 minutes
-schedule.every(5).minutes.do(job)
-
-
-if __name__ == "__main__":
-
-    job()
-
-    # Keep the script running and check for scheduled jobs
-    while True:
-        schedule.run_pending()
-        print("Job still running")
-        time.sleep(60)  # Check every minute
